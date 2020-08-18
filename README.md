@@ -1,2 +1,2 @@
 # Competitive-Programming
-Competitive programming codes which are uploaded after the end of contest
+Competitive programming codes which are uploaded at the end of contests
