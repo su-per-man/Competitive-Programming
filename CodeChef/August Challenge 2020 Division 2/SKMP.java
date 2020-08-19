@@ -1,59 +1,41 @@
-/* package codechef; // don't place package name! */
-
 import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-/* Name of the class has to be "Main" only if the class is public. */
-class SKPM
+class SKMP
 {
 	public static void main (String[] args) throws java.lang.Exception
 	{
-		Scanner sc= new Scanner(System.in) ;
-		if(sc.hasNext()){
-		    int t= sc.nextInt() ;
-		    sc.nextLine() ;
-		    while(t-->0){
-		        String s= sc.nextLine() ;
-		        String p= sc.nextLine() ;
-		        
-				int[] arr= new int[26] ;
-				Arrays.fill(arr,0) ;
-				for(int i=0;i<s.length();i++){
-					++arr[s.charAt(i)-97] ;
-				}
-				
-				for(int j=0;j<p.length();j++){
-					--arr[p.charAt(j)-97] ;
-				}
-				
-				String result="" ;
-				String temp="" ;
-				String front="" ;
-				String rear="" ;
-				String s1=p ;
-				String s2=p ;
-				for(int i=0;i<arr.length;i++){
-					if(arr[i]>0){
-					char[] ch= new char[arr[i]] ;
-					Arrays.fill(ch,(char)(i+97) ) ;
-					temp= String.valueOf(ch) ;
-					s1= front+temp+s1+rear;
-					s2= front+s2+rear+temp ;
-					int ref= s1.compareTo(s2) ;
-					if(ref>0){
-						rear+=temp ;
-					}
-					else{
-						front+=temp ;
-					}
-					s1=p ;
-					s2=p ;
-					}
-				}
-				result= front+p+rear ;
-				System.out.println(result) ;
+		InputStreamReader rd = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(rd);
+		int t=Integer.parseInt(br.readLine());;
+		while(t-->0){
+		    String inp=br.readLine();
+		    String str=br.readLine();
+		    
+		    int[] rInp = new int[26];
+		    for(int i=0;i<inp.length();i++)
+		        rInp[(int)inp.charAt(i)-'a']++;
+		    for(int i=0;i<str.length();i++)
+		        rInp[(int)str.charAt(i)-'a']--;
+		    int strPos=0;
+		    while(strPos+1<str.length() && str.charAt(strPos)==str.charAt(strPos+1))
+		        strPos++;
+		    int ch=str.charAt(strPos)-'a';
+		    if(strPos+1<str.length() && str.charAt(strPos)<str.charAt(strPos+1))
+		        ch++;
+		    StringBuilder op = new StringBuilder();
+		    int apFlag=0;
+		    for(int i=0;i<26;i++){
+		        int rept=rInp[i];
+		        if(ch==i && apFlag==0){
+		            op.append(str);   
+		            apFlag=1;
+		        }
+		        while(rept-->0)
+		            op.append((char)(i+'a'));
 		    }
+		    System.out.println(op.toString());
 		}
 	}
 }
